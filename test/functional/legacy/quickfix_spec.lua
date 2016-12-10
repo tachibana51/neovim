@@ -546,6 +546,18 @@ describe('helpgrep', function()
     -- Still alive?
     eq(2, eval('1+1'))
   end)
+
+  it('tests history', function()
+    source([[
+      helpgrep quickfix
+      copen
+      " This wipes out the buffer, make sure that doesn't cause trouble.
+      cclose
+    ]])
+    execute('cgetexpr [$x]')
+    -- Still alive?
+    eq(2, eval('1+1'))
+  end)
 end)
 
 describe('errorformat', function()
